@@ -4,12 +4,23 @@ const results = document.getElementById('results');
 const assumptionsCard = document.getElementById('assumptionsCard');
 const outputCard = document.getElementById('outputCard');
 const calculateBtn = document.getElementById('calculateBtn');
+const resetBtn = document.getElementById('resetBtn');
+const exportBtn = document.getElementById('exportBtn');
 const statusEl = document.getElementById('status');
 const companyTitle = document.getElementById('companyTitle');
 const valuationSummary = document.getElementById('valuationSummary');
 const forecastBody = document.getElementById('forecastBody');
 
 let selectedTicker = null;
+let lastSimulationRows = [];
+
+const defaultInputs = {
+  growthRate: '8',
+  discountRate: '10',
+  terminalGrowthRate: '2.5',
+  forecastYears: '10',
+  startingFcf: ''
+};
 
 const formatUsd = (value) => new Intl.NumberFormat('cs-CZ', {
   style: 'currency',
@@ -110,9 +121,64 @@ const renderValuation = ({ company, sourceData, dcf, source, warning }) => {
     </tr>
   `).join('');
 
+  let peak = 0;
+  let cumulativeEquity = 0;
+  lastSimulationRows = dcf.yearlyForecast.map((row, index) => {
+    cumulativeEquity += row.discountedFcf;
+    peak = Math.max(peak, cumulativeEquity);
+    const drawdown = peak > 0 ? (cumulativeEquity - peak) / peak : 0;
+
+    return {
+      tradeIndex: index + 1,
+      equity: cumulativeEquity,
+      drawdown
+    };
+  });
+
+  exportBtn.disabled = lastSimulationRows.length === 0;
+
   if (warning) {
     setStatus(`${warning} Hodnoty byly i tak spočítány.`, true);
   }
+};
+
+const resetForm = () => {
+  searchInput.value = '';
+  Object.entries(defaultInputs).forEach(([id, value]) => {
+    document.getElementById(id).value = value;
+  });
+
+  selectedTicker = null;
+  lastSimulationRows = [];
+  results.innerHTML = '';
+  valuationSummary.innerHTML = '';
+  forecastBody.innerHTML = '';
+  companyTitle.textContent = '';
+  assumptionsCard.classList.add('hidden');
+  outputCard.classList.add('hidden');
+  exportBtn.disabled = true;
+  setStatus('Formulář byl resetován na výchozí hodnoty.');
+};
+
+const exportCsv = () => {
+  if (!lastSimulationRows.length) {
+    setStatus('Nejdřív spusť výpočet, potom můžeš exportovat CSV.', true);
+    return;
+  }
+
+  const header = 'tradeIndex,equity,drawdown';
+  const rows = lastSimulationRows.map((row) => `${row.tradeIndex},${row.equity.toFixed(2)},${row.drawdown.toFixed(6)}`);
+  const csvContent = [header, ...rows].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${selectedTicker || 'valuation'}-simulation.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  setStatus('CSV export byl stažen.');
 };
 
 const calculate = async () => {
@@ -145,3 +211,5 @@ searchInput.addEventListener('keydown', (e) => {
   }
 });
 calculateBtn.addEventListener('click', calculate);
+resetBtn.addEventListener('click', resetForm);
+exportBtn.addEventListener('click', exportCsv);

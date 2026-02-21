@@ -39,7 +39,11 @@
             <input id="startingFcf" type="number" step="1000000" placeholder="nechat prázdné = auto" />
           </label>
         </div>
-        <button id="calculateBtn">Spočítat vnitřní hodnotu</button>
+        <div class="actions-row">
+          <button id="calculateBtn">Spočítat vnitřní hodnotu</button>
+          <button id="resetBtn" type="button" class="secondary">Reset</button>
+          <button id="exportBtn" type="button" class="secondary" disabled>Export CSV</button>
+        </div>
       </section>
 
       <section class="card hidden" id="outputCard">

@@ -29,6 +29,13 @@ body {
   gap: 8px;
 }
 
+.actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
 input, button {
   padding: 10px;
   border-radius: 8px;
@@ -45,6 +52,19 @@ button {
 }
 
 button:hover { background: #1e40af; }
+
+button.secondary {
+  background: #64748b;
+}
+
+button.secondary:hover {
+  background: #475569;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
 
 .grid {
   display: grid;
