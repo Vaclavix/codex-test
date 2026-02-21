@@ -1,0 +1,16 @@
+{
+  "name": "intrinsic-value-calculator",
+  "version": "1.0.0",
+  "description": "Interactive intrinsic value calculator for US-listed companies",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "undici": "^7.22.0"
+  },
+  "type": "module"
+}

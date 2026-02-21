@@ -1,0 +1,12 @@
+[
+  {"ticker":"AAPL","name":"Apple Inc.","exchange":"NASDAQ","marketPrice":182.12,"currency":"USD","sharesOutstanding":15550600000,"freeCashFlow":99584000000,"cash":67150000000,"debt":111090000000},
+  {"ticker":"MSFT","name":"Microsoft Corporation","exchange":"NASDAQ","marketPrice":408.59,"currency":"USD","sharesOutstanding":7432000000,"freeCashFlow":74071000000,"cash":80067000000,"debt":61225000000},
+  {"ticker":"GOOGL","name":"Alphabet Inc. Class A","exchange":"NASDAQ","marketPrice":148.78,"currency":"USD","sharesOutstanding":12440000000,"freeCashFlow":69495000000,"cash":110917000000,"debt":25746000000},
+  {"ticker":"AMZN","name":"Amazon.com, Inc.","exchange":"NASDAQ","marketPrice":174.42,"currency":"USD","sharesOutstanding":10437000000,"freeCashFlow":36805000000,"cash":86780000000,"debt":160220000000},
+  {"ticker":"META","name":"Meta Platforms, Inc.","exchange":"NASDAQ","marketPrice":487.22,"currency":"USD","sharesOutstanding":2539000000,"freeCashFlow":43349000000,"cash":65270000000,"debt":28650000000},
+  {"ticker":"NVDA","name":"NVIDIA Corporation","exchange":"NASDAQ","marketPrice":118.11,"currency":"USD","sharesOutstanding":24660000000,"freeCashFlow":27920000000,"cash":31400000000,"debt":9700000000},
+  {"ticker":"TSLA","name":"Tesla, Inc.","exchange":"NASDAQ","marketPrice":192.27,"currency":"USD","sharesOutstanding":3180000000,"freeCashFlow":4421000000,"cash":29094000000,"debt":9564000000},
+  {"ticker":"BRK-B","name":"Berkshire Hathaway Inc. Class B","exchange":"NYSE","marketPrice":412.35,"currency":"USD","sharesOutstanding":2184000000,"freeCashFlow":33250000000,"cash":167642000000,"debt":123200000000},
+  {"ticker":"JPM","name":"JPMorgan Chase & Co.","exchange":"NYSE","marketPrice":197.55,"currency":"USD","sharesOutstanding":2879000000,"freeCashFlow":32690000000,"cash":965420000000,"debt":1007480000000},
+  {"ticker":"V","name":"Visa Inc.","exchange":"NYSE","marketPrice":273.62,"currency":"USD","sharesOutstanding":1939000000,"freeCashFlow":19542000000,"cash":15734000000,"debt":20988000000}
+]
