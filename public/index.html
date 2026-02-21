@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interaktivní kalkulačka vnitřní hodnoty</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>📈 Interaktivní kalkulačka vnitřní hodnoty</h1>
+      <p>Zadej ticker nebo název US firmy z integrované databáze a uprav předpoklady DCF modelu.</p>
+
+      <section class="card">
+        <label for="searchInput">Ticker / název firmy</label>
+        <div class="search-row">
+          <input id="searchInput" type="text" placeholder="např. AAPL nebo Apple" />
+          <button id="searchBtn">Vyhledat</button>
+        </div>
+        <ul id="results"></ul>
+      </section>
+
+      <section class="card hidden" id="assumptionsCard">
+        <h2>Předpoklady modelu</h2>
+        <div class="grid">
+          <label>Růst FCF (% ročně)
+            <input id="growthRate" type="number" step="0.1" value="8" />
+          </label>
+          <label>Diskontní sazba (% WACC)
+            <input id="discountRate" type="number" step="0.1" value="10" />
+          </label>
+          <label>Terminální růst (%)
+            <input id="terminalGrowthRate" type="number" step="0.1" value="2.5" />
+          </label>
+          <label>Délka projekce (roky)
+            <input id="forecastYears" type="number" min="3" max="20" value="10" />
+          </label>
+          <label>Startovní FCF (USD, volitelné)
+            <input id="startingFcf" type="number" step="1000000" placeholder="nechat prázdné = auto" />
+          </label>
+        </div>
+        <button id="calculateBtn">Spočítat vnitřní hodnotu</button>
+      </section>
+
+      <section class="card hidden" id="outputCard">
+        <h2 id="companyTitle"></h2>
+        <div id="valuationSummary" class="summary"></div>
+        <table>
+          <thead>
+            <tr><th>Rok</th><th>FCF (USD)</th><th>Diskontované FCF (USD)</th></tr>
+          </thead>
+          <tbody id="forecastBody"></tbody>
+        </table>
+      </section>
+
+      <p id="status"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
